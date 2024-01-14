@@ -1,20 +1,12 @@
 import time
 import pandas as pd
 import numpy as np
-
+#도시 데이터 정보 파일을 딕셔너리로 저장함
 CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
              'washington': 'washington.csv' }
-
+#get_filters function은 도시와 월과 일을 입력 받아 처리 하는 function
 def get_filters():
-    """
-    사용자로부터 분석할 도시, 월, 그리고 요일을 지정하도록 요청합니다.
-
-    Returns:
-        (str) city - 분석할 도시의 이름
-        (str) month - 필터링할 월의 이름 또는 "all"로 모든 월을 대상으로 설정
-        (str) day - 필터링할 요일의 이름 또는 "all"로 모든 요일을 대상으로 설정
-    """
     print('안녕하세요! 미국 자전거공유 데이터를 탐색해봅시다!')
     #도시 입력
     while True:
@@ -45,16 +37,6 @@ def get_filters():
 
 
 def load_data(city, month, day):
-    """
-    지정된 도시의 데이터를 불러와 월과 요일에 따라 필터링합니다.
-
-    Args:
-        (str) city - 분석할 도시의 이름
-        (str) month - 필터링할 월의 이름 또는 "all"로 모든 월을 대상으로 설정
-        (str) day - 필터링할 요일의 이름 또는 "all"로 모든 요일을 대상으로 설정
-    Returns:
-        df - 월과 요일에 따라 필터링된 도시 데이터를 포함한 Pandas DataFrame
-    """
     #city에 입력 받은 도시 불러오기
     file_name = CITY_DATA[city]
     df = pd.read_csv(file_name)
@@ -90,11 +72,6 @@ def load_data(city, month, day):
         if selected_day != 0:
             df = df[df['Start Time'].dt.dayofweek == selected_day]
 
-    # 필터링된 데이터프레임의 첫 부분 출력
-    # print(df.head())
-
-    # TO DO: 월과 요일에 따라 데이터 필터링하기
-
     #기존 데이터 5줄 출력
     current_line = 0
     while current_line < len(df):
@@ -120,11 +97,7 @@ def load_data(city, month, day):
     return df
 
 
-# 아래의 함수들은 구현되지 않은 상태입니다.
 def time_stats(df):
-    """가장 빈번한 여행 시간에 대한 통계를 표시합니다."""
-    # 구현 내용은 이곳에 추가하세요.
-    # print("----------------------------------------")
     start_time = time.time()
 
     #가장 많이 사용하는 월
@@ -136,8 +109,6 @@ def time_stats(df):
     print(f"가장 많이 사용된 요일은 {most_day}입니다.")
 
 def station_stats(df):
-    """가장 인기 있는 스타트 및 엔드 스테이션 및 여행에 대한 통계를 표시합니다."""
-    # 구현 내용은 이곳에 추가하세요.
     print("----------------------------------------")
 
     start_time = time.time()
@@ -151,8 +122,6 @@ def station_stats(df):
     print(f"가장 믾이 끝나는 역은{most_end_station} 역 입니다.")
 
 def trip_duration_stats(df):
-    """총 여행 시간 및 평균 여행 시간에 대한 통계를 표시합니다."""
-    # 구현 내용은 이곳에 추가하세요.
     print("----------------------------------------")
     start_time = time.time()
 
@@ -165,8 +134,6 @@ def trip_duration_stats(df):
     print(f"평균 여행 시간은 {mean_time}초 입니다.")
 
 def user_stats(df):
-    """자전거 대여 사용자에 대한 통계를 표시합니다."""
-    # 구현 내용은 이곳에 추가하세요.
     print("----------------------------------------")
     start_time = time.time()
 
